@@ -1,18 +1,18 @@
 {
-	"name": "bear", 
+	"name": "Ticket", 
 	"version": "1.0",
 	"manifest_version": 2,
 	"content_scripts": [
 		{
-			"matches": ["<all_urls>"],
+			"matches": ["https://tickets.checkpoint.com/kayako/staff/index.php?/Tickets/Manage/Filter/81/-1/-1"],
 			"js": ["content.js"]
 		}
 	],
 	"browser_action": {
-		"default_title": "Bear"
+		"default_title": "Ticket Ext",
+		"default_popup": "popup.html"
 	},
 	"background": {
 		"scripts" : ["background.js"]
-	},
-	"permissions": ["tabs"]
+	}
 }
