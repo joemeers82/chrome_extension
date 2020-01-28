@@ -1,17 +1,15 @@
 {
 	"name": "Ticket", 
+	"description": "Helping identify and count tickets",
 	"version": "1.0",
-	"manifest_version": 2,
-	"content_scripts": [
-		{
-			"matches": ["https://tickets.checkpoint.com/kayako/staff/index.php?/Tickets/Manage/Filter/81/-1/-1"],
-			"js": ["content.js"]
-		}
-	],
+	"permissions": [
+		"https://tickets.checkpoint.com/kayako/staff/index.php?/Tickets/Manage/Filter/81/-1/-1"
+	],	
 	"browser_action": {
-		"default_title": "Ticket Ext",
+		"default_title": "Ticket Help",
 		"default_popup": "popup.html"
 	},
+	"manifest_version": 2,
 	"background": {
 		"scripts" : ["background.js"]
 	}

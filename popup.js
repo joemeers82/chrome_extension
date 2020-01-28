@@ -1,31 +1,41 @@
 document.addEventListener('DOMContentLoaded', function(){
-	function tickets(name){
-		const tickets = [];
-		const ticketLength = document.querySelectorAll('.gridcontents_ticketmanagegrid_parent tr').length;
-		console.log(ticketLength);
+	const select   = document.querySelector('#member_list');
+	//let ticketrows = document.querySelectorAll('.gridcontents_ticketmanagegrid_parent tr');
+	const bg = chrome.extension.getBackgroundPage()
 
-		const rows = document.querySelectorAll('.gridcontents_ticketmanagegrid_parent tr td:nth-of-type(5)');
-		rows.forEach( el => {
-			let colleague = el.innerText;
-			if(colleague.indexOf(name) !== -1){
-				tickets.push(colleague);
-			}
-			else{
-				el.parentNode.style.display='none';
-			}
-		})
-		let total = tickets.length;
-		console.log(`${tickets[0]} has ${total} active tickets`);
+	console.log(bg.ticketrows);
+
+	function tickets(ticketrows,name){
+		const tickets = [];
+		
+		let ticketLength = bg.ticketrows.length;
+		//console.log(ticketLength);
+		alert(ticketLength);
+		// const rows = document.querySelectorAll('.gridcontents_ticketmanagegrid_parent tr td:nth-of-type(5)');
+		// rows.forEach( el => {
+		// 	let colleague = el.innerText;
+		// 	if(colleague.indexOf(name) !== -1){
+		// 		tickets.push(colleague);
+		// 	}
+		// 	else{
+		// 		el.parentNode.style.display='none';
+		// 	}
+		// })
+		// let total = tickets.length;
+		//return `${tickets[0]} has ${total} active tickets`;
 	}
 
-	
+	select.addEventListener('change', (event)=>{
+		
+		chrome.tabs.executeScript(null,
+      	{code:"let rows = document.querySelectorAll('.gridcontents_ticketmanagegrid_parent tr');"},
+      	function(){
+      		chrome.tabs.executeScript(null, {file: 'content.js'})
+      	});
+	})
 	// const bg = chrome.extension.getBackgroundPage()
 
-	// Object.keys(bg.bears).forEach(function(url){
-	// 	const div = document.createElement('div')
-	// 	div.textContent =`${url}: ${bg.bears[url]}`
-	// 	document.body.appendChild(div)
-	// })
+	
 
 	// document.querySelector('button').addEventListener('click', onclick, false)
 
